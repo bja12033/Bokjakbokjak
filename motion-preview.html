@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>팬 토스 모션 미리보기</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="game-expanded.css?v=3">
+  <style>
+    body{min-height:100vh;display:grid;place-items:center;padding:24px}
+    main{width:min(540px,100%);text-align:center}
+    h1{margin-bottom:8px}
+    p{color:#687c72}
+    .preview-board{height:300px;display:grid;place-items:center;margin:24px 0;border:3px solid #74b6ba;border-radius:22px;background:#e2f6f2;overflow:hidden}
+    .preview-board .flip-scene{margin-top:18px}
+    .motion-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0;padding:0;list-style:none}
+    .motion-steps li{padding:9px 5px;border-radius:10px;background:#f4e9ca;color:#806e57;font-size:12px;font-weight:700}
+    .motion-steps li.active{background:#e98261;color:white}
+    .controls{display:flex;justify-content:center;gap:12px;margin-top:24px}
+    .controls a{align-self:center;color:#346773}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>팬 토스 모션 미리보기</h1>
+    <p>볶음밥이 팬에서 올라가 회전한 뒤 다시 착지하는 동작입니다.</p>
+    <div class="preview-board">
+      <div class="flip-scene recipe-motion-0" id="motion-scene">
+        <span class="toss-shadow" aria-hidden="true"></span>
+        <div class="flying-food food-0" role="img" aria-label="팬에서 뒤집히는 볶음밥">🍚</div>
+        <span class="landing-ring" aria-hidden="true"></span>
+        <div class="pan pan-illustration" aria-hidden="true"></div>
+        <span class="steam">〰</span>
+      </div>
+    </div>
+    <ol class="motion-steps" id="motion-steps">
+      <li>① 팬 위</li><li>② 상승</li><li>③ 45° 회전</li>
+      <li>④ 90° 회전</li><li>⑤ 하강</li><li>⑥ 착지</li>
+    </ol>
+    <div class="controls"><button class="primary" id="replay" type="button">다시 보기 ↻</button><a href="./index.html">게임으로 돌아가기</a></div>
+  </main>
+  <script src="motion-system.js?v=3"></script>
+  <script>
+    const scene=document.getElementById('motion-scene');
+    const steps=[...document.querySelectorAll('#motion-steps li')];
+    let timers=[];
+    function replay(){
+      timers.forEach(clearTimeout);timers=[];
+      CookingMotion.play(scene,{scene:'pan',action:'toss'},'perfect');
+      [0,320,545,755,1005,1230].forEach((time,index)=>timers.push(setTimeout(()=>steps.forEach((item,i)=>item.classList.toggle('active',i===index)),time)));
+    }
+    document.getElementById('replay').addEventListener('click',replay);
+    replay();
+  </script>
+</body>
+</html>

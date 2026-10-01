@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>팬 볶기 프로토타입 · 루루의 주방</title>
+  <link rel="stylesheet" href="frying-prototype.css">
+</head>
+<body>
+  <main class="prototype">
+    <header class="topbar">
+      <div><span class="eyebrow">LULU'S LITTLE KITCHEN · MOTION STUDY 01</span><h1>팬 볶기 프로토타입</h1></div>
+      <a href="index.html">게임으로 돌아가기 <span aria-hidden="true">↗</span></a>
+    </header>
+    <section class="play-panel" aria-label="마우스로 팬을 움직이는 조리 장면">
+      <div class="stage" id="stage">
+        <canvas id="cooking-canvas" width="1280" height="720" aria-label="팬 조작 화면"></canvas>
+        <div class="stage-label"><span class="stage-dot"></span> 직접 조리 중</div>
+        <div class="gesture-note" id="gesture-note">팬을 잡고 앞뒤로 움직여 보세요</div>
+      </div>
+      <div class="controls">
+        <div class="instruction"><span class="instruction-icon" aria-hidden="true">↕</span><div><strong>마우스로 팬을 드래그하세요</strong><small>천천히 움직이면 재료가 미끄러지고, 빠르게 위로 밀면 튀어 오릅니다.</small></div></div>
+        <div class="telemetry"><div><span>팬 속도</span><div class="speed-track"><i id="speed-fill"></i></div></div><div class="toss-count"><span>뒤집기</span><strong id="toss-count">0</strong></div><button id="reset-food" type="button">재료 다시 담기</button></div>
+      </div>
+    </section>
+    <p class="prototype-note">볶음밥 한 장면의 시각·조작 기준을 검증하는 프로토타입입니다. 배경, 팬, 손은 독립된 그림이며 재료와 움직임은 실시간으로 계산됩니다.</p>
+  </main>
+  <script type="module" src="frying-prototype.js"></script>
+</body>
+</html>

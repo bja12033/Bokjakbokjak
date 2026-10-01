@@ -1,0 +1,159 @@
+:root{--app-max:1120px;--tap-size:44px;--safe-top:env(safe-area-inset-top,0px);--safe-right:env(safe-area-inset-right,0px);--safe-bottom:env(safe-area-inset-bottom,0px);--safe-left:env(safe-area-inset-left,0px)}
+html,body{width:100%;max-width:100%;min-height:100%;overflow-x:hidden}
+body{min-width:0}
+.app-shell{min-height:100dvh}
+.device-picker,.settings-modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:max(20px,var(--safe-top)) max(20px,var(--safe-right)) max(20px,var(--safe-bottom)) max(20px,var(--safe-left));background:linear-gradient(145deg,#194e58ed,#6da79ded);backdrop-filter:blur(7px)}
+.device-picker[hidden],.settings-modal[hidden]{display:none!important}
+.device-picker-card,.settings-card{position:relative;width:min(540px,100%);padding:clamp(24px,5vw,42px);border:4px solid #fff0bd;border-radius:28px;background:#fff8df;box-shadow:0 20px 55px #173f4770;text-align:center;color:#526e69}
+.device-kitchen{display:grid;place-items:center;width:82px;height:82px;margin:0 auto 8px;border-radius:50%;background:#ffd5d1;font-size:46px;box-shadow:0 5px #e6aaa5}
+.device-picker-card>small,.settings-card>small{font-size:11px;font-weight:800;letter-spacing:2px;color:#b08254}
+.device-picker-card h1{margin:12px 0 7px;font-size:clamp(28px,6vw,40px);color:#3f6867}
+.device-picker-card>p,.settings-card>p{margin:0 0 22px;color:#8a7161;font-size:14px}
+.device-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.device-options button{min-height:132px;padding:18px 12px;border:3px solid #d7b778;border-radius:18px;background:#fffdf1;color:#745d4c;box-shadow:0 5px #dec18d;font:inherit;touch-action:manipulation}
+.device-options button>span{display:block;font-size:42px}.device-options strong{display:block;margin:7px 0 3px;font:20px Jua,sans-serif}.device-options small{display:block;color:#9b8877;font-size:11px}
+.device-options button:hover,.device-options button:focus-visible{background:#fff0c7;border-color:#e78262}.device-options button:active{translate:0 3px;box-shadow:0 2px #dec18d}
+.settings-modal{z-index:210}.settings-card{width:min(390px,100%)}.settings-card h2{margin:8px 0;font-size:30px}.settings-card .primary{width:100%;min-width:0}.settings-close{position:absolute;right:12px;top:8px;width:44px;height:44px;border:0;background:transparent;color:#997e68;font-size:30px}
+.icon-button{white-space:nowrap}
+#rotate-prompt{display:none}
+@media(orientation:portrait) and (max-width:900px){body.device-mobile #rotate-prompt{position:fixed;z-index:190;right:max(12px,var(--safe-right));bottom:max(12px,var(--safe-bottom));left:max(12px,var(--safe-left));display:flex;align-items:center;justify-content:center;gap:9px;padding:11px 14px;border:2px solid #fff0bd;border-radius:16px;background:#fff8dff2;color:#526e69;box-shadow:0 5px 0 #d8b779;font-size:clamp(13px,3.7vw,16px);text-align:center;pointer-events:none}#rotate-prompt span{display:inline-block;color:#e78262;font-size:25px;animation:rotate-hint 1.6s ease-in-out infinite alternate}@keyframes rotate-hint{to{transform:rotate(90deg)}}}
+
+/* Generated transparent WebP menu art. The original PNG sprites remain available as load fallbacks. */
+.dish-art{background-repeat:no-repeat;background-position:center;background-size:contain;background-color:transparent;image-rendering:auto}
+.dish-0{background-image:url('assets/food/fried-rice.webp')}.dish-1{background-image:url('assets/food/steak.webp')}.dish-2{background-image:url('assets/food/tteokbokki.webp')}.dish-3{background-image:url('assets/food/pasta.webp')}.dish-4{background-image:url('assets/food/curry.webp')}.dish-5{background-image:url('assets/food/ramen.webp')}.dish-6{background-image:url('assets/food/pancakes.webp')}.dish-7{background-image:url('assets/food/tonkatsu.webp')}.dish-8{background-image:url('assets/food/udon.webp')}
+.dish-thumb{width:clamp(48px,5vw,64px);height:clamp(38px,4vw,52px);border-radius:8px}.menu-image{background-size:92%;background-position:center}.ready-dish{width:clamp(190px,32vw,290px);height:clamp(150px,25vw,225px);margin-top:10px}.result-art{background-size:contain}.cook-preview{position:absolute;left:51px;top:28px;width:130px;height:100px;z-index:3;opacity:calc(.18 + var(--cook-progress)*.68);filter:saturate(calc(.62 + var(--cook-progress)*.55)) brightness(calc(.88 + var(--cook-progress)*.12));transform:perspective(95px) rotateX(48deg);transition:opacity .28s,filter .28s}
+.dish-fallback-0 .dish-0,.dish-fallback-1 .dish-1,.dish-fallback-2 .dish-2,.dish-fallback-3 .dish-3,.dish-fallback-4 .dish-4,.dish-fallback-5 .dish-5,.dish-fallback-6 .dish-6,.dish-fallback-7 .dish-7{background-image:url('food-sprite-v1.png');background-size:400% 200%}
+.dish-fallback-0 .dish-0{background-position:0 0}.dish-fallback-1 .dish-1{background-position:33.333% 0}.dish-fallback-2 .dish-2{background-position:66.667% 0}.dish-fallback-3 .dish-3{background-position:100% 0}.dish-fallback-4 .dish-4{background-position:0 100%}.dish-fallback-5 .dish-5{background-position:33.333% 100%}.dish-fallback-6 .dish-6{background-position:66.667% 100%}.dish-fallback-7 .dish-7{background-position:100% 100%}
+.dish-fallback-8 .dish-8,.dish-fallback-9 .dish-9,.dish-fallback-10 .dish-10{background-image:url('new-food-sprite-v1.png');background-size:300% 100%}.dish-fallback-8 .dish-8{background-position:0 0}.dish-fallback-9 .dish-9{background-position:50% 0}.dish-fallback-10 .dish-10{background-position:100% 0}
+
+/* PC mode restores a roomy two-panel kitchen while keeping the portrait character of the game. */
+body.device-desktop .app-shell{min-height:100dvh;overflow:auto}
+body.device-desktop header,body.device-desktop main{width:min(var(--app-max),calc(100vw - 48px));max-width:var(--app-max)}
+body.device-desktop header{padding:18px 22px 13px;background:#f8f1dc}
+body.device-desktop main{padding:0;background:#f8f1dc;box-shadow:0 0 0 8px #0e1211,0 18px 40px #0008}
+body.device-desktop .lesson-heading{padding:14px 22px 12px}
+body.device-desktop .screens{display:grid;grid-template-columns:minmax(250px,300px) minmax(0,1fr);gap:18px;padding:18px;background:#ffd95f}
+body.device-desktop .coach-screen{order:0;height:auto;min-height:610px;padding:15px;border:2px solid #d89092;border-radius:17px}
+body.device-desktop .work-screen{order:1;padding:0;min-width:0}
+body.device-desktop .mascot-wrap{position:relative;right:auto;bottom:auto;width:auto;height:210px;margin-top:8px}
+body.device-desktop .mascot-wrap #mascot{width:220px;height:220px}
+body.device-desktop .notebook{position:relative;left:auto;right:auto;bottom:auto;width:auto;margin-top:4px;padding:12px}
+body.device-desktop .note-label,body.device-desktop .menu-preview{display:flex}
+body.device-desktop .score-line{padding-top:8px;border-top:1px dashed #cfb79d}
+body.device-desktop .recipe-picker{grid-template-columns:repeat(6,minmax(0,1fr));max-height:none;overflow:visible}
+body.device-desktop .recipe-card{min-height:76px;font-size:11px}
+body.device-desktop .workspace{padding:14px 14px 0}
+body.device-desktop .board{min-height:300px}body.device-desktop .scene{height:258px}
+body.device-desktop .primary,body.device-desktop .secondary,body.device-desktop .small-button{min-height:44px}
+
+/* Smartphone mode uses a safe-area-aware internal scroller and touch-first sizing. */
+body.device-mobile{height:100dvh;overflow:hidden;overscroll-behavior:none;background:#151918}
+body.device-mobile .app-shell{width:min(100%,430px);height:100dvh;min-height:0;margin:0 auto;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;background:#f8f1dc;padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);scrollbar-width:thin}
+body.device-mobile header,body.device-mobile main{width:100%;max-width:none;margin:0}
+body.device-mobile header{position:sticky;top:0;z-index:30;min-height:58px;padding:8px max(9px,var(--safe-right)) 8px max(9px,var(--safe-left));background:#f8f1dcee;backdrop-filter:blur(8px)}
+body.device-mobile .brand{font-size:clamp(18px,5.7vw,23px);gap:6px}.device-mobile .brand-icon{font-size:clamp(24px,7vw,31px)}.device-mobile .brand small{font-size:9px;margin-top:5px}
+body.device-mobile .header-actions{gap:5px}.device-mobile .lesson-tag{display:none}.device-mobile .small-button{min-width:44px;min-height:44px;padding:6px 8px;font-size:clamp(9px,2.6vw,11px)}
+body.device-mobile main{padding:0 max(6px,var(--safe-right)) 0 max(6px,var(--safe-left));box-shadow:none;background:#f8f1dc}
+body.device-mobile .lesson-heading{padding:9px 7px 8px;margin:0}.device-mobile .eyebrow{font-size:8px}.device-mobile .lesson-heading h1{font-size:clamp(22px,7vw,28px);margin-top:3px}
+body.device-mobile .difficulty{display:none!important}
+body.device-mobile .kitchen-shell{width:100%;border-radius:16px;border-width:2px;overflow:hidden}
+body.device-mobile .shell-top{padding:7px 10px;font-size:9px}
+body.device-mobile .screens{display:flex;flex-direction:column;gap:7px;padding:7px;background:#ffd95f}
+body.device-mobile .coach-screen{order:1;height:clamp(112px,22vh,145px);min-height:112px;padding:8px;border-radius:12px}
+body.device-mobile .work-screen{order:2;padding:0;min-width:0}
+body.device-mobile .coach-top{font-size:9px;width:65%}.device-mobile .speech{width:68%;margin-top:5px;padding:5px 8px}.device-mobile .speech p{font-size:clamp(13px,4vw,16px);line-height:1.3;min-height:33px;margin-top:2px}
+body.device-mobile .mascot-wrap{position:absolute;right:-4px;top:-16px;width:38%;height:150px;margin:0}.device-mobile .mascot-wrap #mascot{width:clamp(118px,37vw,154px);height:clamp(118px,37vw,154px)}
+body.device-mobile .notebook{position:absolute;right:3px;bottom:3px;left:auto;width:auto;margin:0;padding:2px 7px;border:0;border-radius:18px}.device-mobile .note-label,.device-mobile .menu-preview{display:none}.device-mobile .score-line{gap:6px;padding:0;border:0}.device-mobile .score-line span{font-size:8px}.device-mobile .score-line b{font-size:clamp(16px,5vw,21px)}
+body.device-mobile .recipe-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;max-height:clamp(126px,23vh,170px);margin-bottom:6px;padding:1px 2px 5px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;touch-action:pan-y}
+body.device-mobile .recipe-card{width:auto;min-width:0;min-height:58px;padding:3px 2px;font-size:clamp(9px,2.8vw,11px);touch-action:manipulation}.device-mobile .recipe-card .dish-thumb{width:100%;height:clamp(30px,9vw,42px);margin-bottom:1px}
+body.device-mobile .steps{justify-content:space-between;gap:3px;margin:0 0 6px;padding:5px 4px;overflow:visible}.device-mobile .steps>span{flex:1 1 0;min-width:0;justify-content:center;gap:2px;font-size:clamp(8px,2.4vw,10px)}.device-mobile .steps i{width:21px;height:21px}
+body.device-mobile .task-banner{gap:5px;padding:7px 8px;border-radius:9px}.device-mobile .task-banner #task-icon{font-size:clamp(22px,7vw,28px)}.device-mobile .task-banner h2{font-size:clamp(15px,4.8vw,19px);line-height:1.08}.device-mobile #stage-tag{font-size:8px}.device-mobile .counter{padding:5px;font-size:8px}
+body.device-mobile .workspace{width:100%;margin-top:7px;padding:7px 7px 0;border-radius:11px}
+body.device-mobile .board{width:100%;min-height:clamp(225px,36vh,285px);border-radius:14px;touch-action:none}.device-mobile .scene{height:clamp(190px,31vh,244px)}.device-mobile .gesture{font-size:9px;padding-bottom:7px}.device-mobile .ready-dish{width:clamp(170px,58vw,245px);height:clamp(125px,42vw,185px)}
+body.device-mobile .ingredient-tray{gap:3px;padding:7px 0 5px}.device-mobile .ingredient-tray>span:not(.tray-label){padding:3px 5px;font-size:9px}.device-mobile .tray-label{display:none}
+body.device-mobile .controls{padding-top:6px;padding-bottom:5px}.device-mobile #feedback{font-size:clamp(10px,3vw,12px);min-height:17px}.device-mobile .meter{height:21px;margin:7px auto 9px;max-width:88%}
+body.device-mobile .action-row{gap:6px;margin-top:6px;flex-wrap:wrap}.device-mobile .action-row button{min-width:44px;min-height:44px;touch-action:manipulation}.device-mobile .primary{flex:1 1 160px;padding:9px 11px;font-size:clamp(17px,5.4vw,21px)}.device-mobile .secondary{padding:8px;font-size:10px}.device-mobile #hint{margin:7px 0 0;font-size:9px}
+body.device-mobile .shell-bottom{padding:7px;font-size:9px}.device-mobile footer{padding:9px 5px;font-size:7px}.device-mobile .result-art{width:clamp(145px,48vw,185px);height:clamp(145px,48vw,185px)}
+body.device-mobile .board.result-mode{min-height:430px}.device-mobile .board.result-mode .scene{height:395px}.device-mobile .drawing-mode #drawing{height:220px}
+body.device-mobile button,body.device-mobile .board,body.device-mobile #drawing{touch-action:manipulation}.device-mobile #drawing,.device-mobile .board{touch-action:none}
+body.device-mobile button{min-height:44px}
+
+@media(max-width:340px){body.device-mobile .recipe-picker{grid-template-columns:repeat(2,minmax(0,1fr));max-height:142px}.device-options{grid-template-columns:1fr}.device-options button{min-height:96px}.device-picker-card{max-height:calc(100dvh - 24px);overflow:auto}.device-mobile .icon-button{font-size:0}.device-mobile .icon-button::before{content:'⚙';font-size:18px}.device-mobile #sound{max-width:92px}.device-mobile .coach-screen{height:112px}.device-mobile .speech{width:70%}}
+@media(orientation:landscape) and (max-height:560px){body.device-mobile .app-shell{width:min(100%,760px)}body.device-mobile .screens{display:grid;grid-template-columns:minmax(150px,.58fr) minmax(0,1.42fr);align-items:start}.device-mobile .coach-screen{order:1;height:calc(100dvh - 125px);min-height:300px;position:sticky;top:60px}.device-mobile .work-screen{order:2}.device-mobile .recipe-picker{grid-template-columns:repeat(4,minmax(0,1fr));max-height:118px}.device-mobile .lesson-heading{display:none}.device-mobile .board{min-height:210px}.device-mobile .scene{height:176px}}
+@media(min-width:1500px){body.device-desktop{--app-max:1220px}body.device-desktop .screens{grid-template-columns:310px minmax(0,1fr)}body.device-desktop .recipe-card{min-height:82px}.device-desktop .board{min-height:330px}.device-desktop .scene{height:288px}}
+@media(prefers-reduced-motion:reduce){.device-picker-card,.device-options button{transition:none!important}}
+
+/* Lock only the cooking screen. Menus, settings, and the result remain scrollable. */
+body.device-mobile.game-active{position:fixed;inset:0;width:100%;height:100vh;height:100dvh;height:100svh;overflow:hidden;overscroll-behavior:none;padding-bottom:0}
+body.device-mobile.game-active .app-shell{height:100vh;height:100dvh;height:100svh;overflow:hidden;overscroll-behavior:none}
+body.device-mobile.game-active header{position:relative;min-height:50px;padding-top:3px;padding-bottom:3px}
+body.device-mobile.game-active .lesson-heading,body.device-mobile.game-active .shell-top,body.device-mobile.game-active .shell-bottom,body.device-mobile.game-active footer,body.device-mobile.game-active .recipe-picker,body.device-mobile.game-active .ingredient-tray,body.device-mobile.game-active #hint{display:none}
+body.device-mobile.game-active .screens{display:flex;flex-direction:column;gap:3px;padding:4px}
+body.device-mobile.game-active .coach-screen{position:relative;order:0;width:100%;height:27px;min-height:0;padding:0 6px;border:0;background:transparent}
+body.device-mobile.game-active .coach-top,body.device-mobile.game-active .speech,body.device-mobile.game-active .mascot-wrap{display:none}
+body.device-mobile.game-active .notebook{position:static;width:100%;height:27px;padding:0 7px;background:#fff8e8}
+body.device-mobile.game-active .score-line{height:27px;justify-content:space-between}
+body.device-mobile.game-active .work-screen{order:1;width:100%}
+body.device-mobile.game-active .steps{margin:0 0 3px;padding:2px 3px}
+body.device-mobile.game-active .steps i{width:18px;height:18px}
+body.device-mobile.game-active .task-banner{min-height:40px;padding:4px 6px}
+body.device-mobile.game-active .workspace{margin-top:3px;padding:4px 4px 0}
+body.device-mobile.game-active .board{width:min(100%,max(160px,calc((100svh - 295px)*16/9)));min-height:0;margin:0 auto}
+body.device-mobile.game-active .board.interactive-mode .scene{height:auto;aspect-ratio:16/9}
+body.device-mobile.game-active .board.interactive-mode .gesture{padding:3px 6px 4px}
+body.device-mobile.game-active .board.drawing-mode .scene{height:auto;aspect-ratio:2/1}
+body.device-mobile.game-active .drawing-mode #drawing{position:absolute;top:0;left:0;width:100%;height:auto;max-height:none;aspect-ratio:2/1;transform:none;margin:0}
+body.device-mobile.game-active .controls{padding:3px 5px 0}
+body.device-mobile.game-active #feedback{min-height:15px;font-size:10px;line-height:1.2}
+body.device-mobile.game-active .action-row{margin-top:3px}
+body.device-mobile.game-active .action-row button{min-height:44px;padding-top:6px;padding-bottom:6px}
+body.device-mobile.game-active .board,body.device-mobile.game-active .cooking-interaction-canvas,body.device-mobile.game-active #drawing,body.device-mobile.game-active .action-row{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body.device-mobile.game-active .cooking-interaction-canvas,body.device-mobile.game-active #drawing{-webkit-user-drag:none;touch-action:none}
+.device-picker-card,.settings-card{max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px);overflow:auto;overscroll-behavior:contain}
+
+@media(orientation:landscape) and (max-height:560px){
+  body.device-mobile.game-active .screens{display:flex;grid-template-columns:none}
+  body.device-mobile.game-active .coach-screen{position:relative;top:auto;height:23px;min-height:0}
+  body.device-mobile.game-active .notebook,body.device-mobile.game-active .score-line{height:23px}
+  body.device-mobile.game-active .steps{padding:1px 3px}
+  body.device-mobile.game-active .board{width:min(100%,max(160px,calc((100svh - 230px)*16/9)))}
+}
+@media(orientation:landscape) and (max-height:420px){
+  body.device-mobile.game-active header{min-height:44px;padding-top:0;padding-bottom:0}
+  body.device-mobile.game-active .coach-screen,body.device-mobile.game-active .steps{display:none}
+  body.device-mobile.game-active .task-banner{min-height:36px;padding:2px 6px}
+  body.device-mobile.game-active .task-banner #task-icon{font-size:20px}
+  body.device-mobile.game-active .task-banner h2{font-size:15px}
+  body.device-mobile.game-active #stage-tag{display:none}
+}
+
+/* During cooking, the food and timing gauge are the main play surface. */
+body.game-active .lesson-heading,body.game-active .shell-top,body.game-active .shell-bottom,body.game-active footer,body.game-active .recipe-picker,body.game-active .ingredient-tray,body.game-active #hint,body.game-active .steps{display:none}
+body.game-active .coach-top,body.game-active .speech,body.game-active .mascot-wrap,body.game-active .note-label,body.game-active .menu-preview{display:none}
+body.device-desktop.game-active .screens{display:flex;flex-direction:column;gap:8px;padding:9px}
+body.device-desktop.game-active header{padding-top:5px;padding-bottom:5px}
+body.device-desktop.game-active .coach-screen{order:0;width:100%;height:31px;min-height:0;padding:0 9px;border:0;background:#fff8e8}
+body.device-desktop.game-active .notebook{width:100%;height:31px;margin:0;padding:0 8px;border:0;background:transparent}
+body.device-desktop.game-active .score-line{height:31px;display:flex;justify-content:space-between;align-items:center;padding:0;border:0}
+body.device-desktop.game-active .work-screen{order:1;width:100%}
+body.device-desktop.game-active .task-banner{max-width:1040px;min-height:48px;margin:0 auto;padding:3px 10px}
+body.device-desktop.game-active .task-banner #task-icon{font-size:22px}
+body.device-desktop.game-active .task-banner h2{font-size:19px}
+body.device-desktop.game-active #stage-tag{display:none}
+body.device-desktop.game-active .workspace{margin-top:7px;padding:5px 5px 0}
+body.device-desktop.game-active .board{width:min(100%,1000px,calc((100dvh - 390px)*16/9));min-height:0;margin:0 auto}
+body.device-desktop.game-active .board.interactive-mode .scene{height:auto;aspect-ratio:16/9}
+body.device-desktop.game-active .controls{max-width:1000px;margin:0 auto;padding:5px 8px 0}
+body.device-desktop.game-active .action-row{justify-content:center}
+body.device-desktop.game-active #action{width:auto;min-width:270px}
+body.game-active .meter{height:31px;max-width:780px;margin:8px auto 8px;border:3px solid #fff9e4;border-radius:17px;outline:2px solid #a9654b;box-shadow:0 4px 0 #bb7d53,inset 0 2px 0 #fff9;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body.game-active .meter-label{line-height:24px;font-size:13px;color:#275b3e}
+body.game-active #needle{top:-8px;height:41px;width:7px;background:#fffdf4;border:2px solid #3a6761;box-shadow:0 1px 5px #342b2c88}
+body.game-active .action-row{margin-top:5px}
+body.game-active .board.interactive-mode .gesture{background:#fff6dd;color:#74563d;font-weight:800}
+body.device-mobile.game-active .meter{width:95%;max-width:none;height:28px;margin:5px auto 6px}
+body.device-mobile.game-active .meter-label{line-height:21px;font-size:11px}
+body.device-mobile.game-active #needle{height:37px}
+body.device-mobile.game-active .controls{padding-top:2px}
+body.device-mobile.game-active .board.interactive-mode .gesture{font-size:9px}
+@media(orientation:landscape) and (max-height:420px){body.device-mobile.game-active .meter{height:24px;margin:3px auto 4px}body.device-mobile.game-active .meter-label{line-height:17px}body.device-mobile.game-active #needle{height:33px}body.device-mobile.game-active #feedback{min-height:13px}}
