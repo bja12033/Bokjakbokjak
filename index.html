@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff1c4">
+  <link rel="icon" href="data:,">
+  <title>보글보글 요리교실</title>
+  <meta name="description" content="토끼 셰프 루루와 볶음밥, 스테이크, 떡볶이 등 아홉 가지 메뉴를 만드는 작은 요리 게임">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="portrait.css">
+<link rel="stylesheet" href="game-expanded.css?v=34">
+  <link rel="stylesheet" href="device-layout.css?v=7">
+  <link rel="stylesheet" href="ui-layout.css?v=7">
+</head>
+<body>
+<div id="device-picker" class="device-picker" role="dialog" aria-modal="true" aria-labelledby="device-picker-title">
+  <div class="device-picker-card">
+    <span class="device-kitchen" aria-hidden="true">🥣</span>
+    <small>LULU’S LITTLE KITCHEN</small>
+    <h1 id="device-picker-title">어떤 기기로 요리할까요?</h1>
+    <p>선택한 화면에 맞춰 주방을 알맞게 준비할게요.</p>
+    <div class="device-options">
+      <button type="button" data-device="desktop"><span aria-hidden="true">🖥</span><strong>PC로 플레이</strong><small>넓고 선명한 주방</small></button>
+      <button type="button" data-device="mobile"><span aria-hidden="true">📱</span><strong>스마트폰으로 플레이</strong><small>가로 화면으로 플레이</small></button>
+    </div>
+  </div>
+</div>
+<div id="rotate-prompt" aria-live="polite"><span aria-hidden="true">↻</span><strong>휴대폰을 가로로 돌려 플레이해 주세요</strong></div>
+<div id="settings-modal" class="settings-modal" hidden role="dialog" aria-modal="true" aria-labelledby="settings-title">
+  <div class="settings-card">
+    <button id="settings-close" class="settings-close" type="button" aria-label="설정 닫기">×</button>
+    <small>LULU’S SETTINGS</small><h2 id="settings-title">주방 설정</h2>
+    <p id="current-device">현재 화면 모드</p>
+    <button id="choose-device-again" class="primary" type="button">화면 모드 다시 선택</button>
+  </div>
+</div>
+<div id="intro" class="intro" role="dialog" aria-label="루루의 요리 소개">
+  <div class="intro-card"><div class="intro-video"><img src="lulu-intro-art.png" alt="루루가 냄비를 저으며 요리하는 모습"><span class="intro-spoon" aria-hidden="true">🥄</span><span class="intro-steam">♨</span></div><div class="intro-copy"><small>LULU’S LITTLE KITCHEN</small><h1>루루가 도와줄게!</h1><p>멋진 요리사 루루와 함께<br>오늘의 요리를 시작해요.</p><button id="intro-start" class="primary">시작하기 <span>▶</span></button><button id="intro-skip" class="intro-skip">소개 건너뛰기</button></div></div>
+</div>
+<div class="app-shell" id="app-shell">
+<div id="difficulty-modal" class="difficulty-modal" hidden><div class="difficulty-modal-card"><button id="difficulty-close" class="difficulty-close" aria-label="닫기">×</button><small>오늘 만들 메뉴</small><h2 id="difficulty-menu-name">오므라이스</h2><p>난이도를 골라 요리를 시작해요.</p><div class="difficulty-modal-options"><button data-modal-difficulty="easy">하<small>천천히 연습</small></button><button data-modal-difficulty="normal">중<small>균형 잡힌 도전</small></button><button data-modal-difficulty="hard">상<small>셰프 모드</small></button></div><button id="difficulty-begin" class="primary">이 난이도로 시작 <span>▶</span></button></div></div>
+<header>
+  <a class="brand" href="./"><span class="brand-icon">🍳</span><span>보글보글<small>요 리 교 실</small></span></a>
+  <div class="header-actions"><span class="lesson-tag">오늘의 수업 · 9가지 메뉴</span><button id="settings" class="small-button icon-button" type="button" aria-label="주방 설정 열기">⚙ 설정</button><button id="sound" class="small-button" aria-label="BGM과 효과음 켜기" aria-pressed="false">♫ BGM·효과음 OFF</button></div>
+</header>
+<main>
+  <div class="lesson-heading"><div><span class="eyebrow">LULU’S LITTLE KITCHEN</span><h1 id="recipe-title">몽글몽글 <em>오므라이스</em></h1></div><div class="difficulty"><span>난이도 선택</span><div class="difficulty-picker" role="group" aria-label="난이도 선택"><button data-difficulty="easy" class="selected">하</button><button data-difficulty="normal">중</button><button data-difficulty="hard">상</button></div><strong id="difficulty-stars">★ ☆ ☆ <span id="difficulty-label">쉬움</span></strong></div></div>
+  <div class="kitchen-shell">
+    <div class="shell-top"><span>✦ 오늘도 맛있는 도전!</span><span class="lights">● ● ●</span></div>
+    <div class="screens">
+      <aside class="coach-screen">
+        <div class="coach-top"><span>루루의 요리 노트</span><span>✿</span></div>
+        <div class="speech"><span id="coach-name">토끼 셰프 루루</span><p id="coach-message" aria-live="polite">오늘은 어떤 요리를<br>만들어볼까?</p></div>
+        <div class="mascot-wrap"><img id="mascot" src="lulu-v2.png" alt="민트색 요리사 모자를 쓰고 나무 주걱을 든 둥근 토끼 셰프 루루"><span class="sparkle one">✦</span><span class="sparkle two">✧</span></div>
+        <div class="notebook"><div class="note-label">선택한 메뉴</div><div class="menu-preview"><span id="menu-image" class="menu-image dish-art dish-0" role="img" aria-label="황금 볶음밥"></span><div><strong id="menu-name">고슬고슬 황금 볶음밥</strong><span id="menu-copy">알알이 고소한 한 접시!</span></div></div><div class="score-line"><span>나의 요리 점수</span><b id="score">000</b></div></div>
+      </aside>
+      <section class="work-screen" aria-label="요리 게임">
+        <div class="recipe-carousel" aria-label="만들 요리 선택">
+          <button class="recipe-nav recipe-prev" type="button" aria-label="이전 음식">‹</button>
+          <div class="recipe-window"><div class="recipe-picker" aria-live="polite">
+          <button class="recipe-card selected" data-recipe="0"><span class="dish-thumb dish-art dish-0" role="img" aria-label="윤기 나는 황금 볶음밥"></span>볶음밥</button>
+          <button class="recipe-card" data-recipe="1"><span class="dish-thumb dish-art dish-1" role="img" aria-label="구운 흔적이 선명한 갈릭 스테이크"></span>스테이크</button>
+          <button class="recipe-card" data-recipe="2"><span class="dish-thumb dish-art dish-2" role="img" aria-label="매콤한 소스가 윤기 나는 떡볶이"></span>떡볶이</button>
+          <button class="recipe-card" data-recipe="3"><span class="dish-thumb dish-art dish-3" role="img" aria-label="토마토와 바질을 올린 파스타"></span>파스타</button>
+          <button class="recipe-card" data-recipe="4"><span class="dish-thumb dish-art dish-4" role="img" aria-label="포근한 감자와 당근이 든 카레라이스"></span>카레</button>
+          <button class="recipe-card" data-recipe="5"><span class="dish-thumb dish-art dish-5" role="img" aria-label="김이 나는 달걀 라멘"></span>라멘</button>
+          <button class="recipe-card" data-recipe="6"><span class="dish-thumb dish-art dish-6" role="img" aria-label="시럽과 베리를 올린 팬케이크"></span>팬케이크</button>
+          <button class="recipe-card" data-recipe="7"><span class="dish-thumb dish-art dish-7" role="img" aria-label="바삭하게 튀긴 돈가스"></span>돈가스</button>
+          <button class="recipe-card" data-recipe="8"><span class="dish-thumb dish-art dish-8" role="img" aria-label="유부와 대파를 올린 따뜻한 우동"></span>우동</button>
+          </div></div>
+          <button class="recipe-nav recipe-next" type="button" aria-label="다음 음식">›</button>
+          <span class="recipe-page" aria-hidden="true">1 / 3</span>
+        </div>
+        <nav id="steps" class="steps" aria-label="요리 순서"><span><i>1</i><b>썰기</b></span><span><i>2</i><b>뒤집기</b></span><span><i>3</i><b>계란</b></span><span><i>4</i><b>볶기</b></span><span><i>5</i><b>소스</b></span></nav>
+        <div class="task-banner"><span id="task-icon">👩‍🍳</span><div><small id="stage-tag">메뉴를 골라주세요</small><h2 id="task-title">오늘의 요리를 선택해요!</h2></div><span id="counter" class="counter">READY</span></div>
+        <div id="workspace" class="workspace">
+          <div class="board" id="board">
+            <div class="board-head"><span id="board-label">오늘의 메뉴판</span><span id="combo">✦</span></div>
+            <div id="scene" class="scene"><div class="ready-food"><span>🔪</span><span>🍳</span><span>🥚</span></div><p class="ready-copy">직접 만드는 즐거움으로<br><strong>나만의 맛있는 한 접시</strong></p></div>
+            <canvas id="drawing" width="800" height="400" hidden aria-label="드래그하여 케첩으로 꾸미기"></canvas>
+            <div id="particles" aria-hidden="true"></div><div id="gesture" class="gesture">메뉴를 고르고 요리를 시작해요</div>
+          </div>
+          <div id="ingredient-tray" class="ingredient-tray" aria-label="선택한 요리의 재료"></div>
+        </div>
+        <div class="controls">
+          <div id="meter" class="meter" hidden aria-label="초록색 구간에 맞춰 누르세요"><div id="sweetspot" class="sweetspot"></div><span class="meter-label">여기!</span><div id="needle"></div></div>
+          <div id="feedback" role="status" aria-live="polite">조리법과 재료가 다른 아홉 가지 메뉴가 준비됐어요.</div>
+          <div class="action-row"><button id="action" class="primary">이 메뉴로 시작! <span>▶</span></button><button id="sauce" class="secondary" hidden>케첩 한 줄</button><button id="restart" class="secondary" hidden>↻ 처음부터</button></div>
+          <p id="hint">바늘이 초록색일 때 SPACE 또는 화면 터치!</p>
+        </div>
+      </section>
+    </div>
+    <div class="shell-bottom"><span>✿ 빠르게, 정확하게, 마지막은 자유롭게!</span><span>MADE WITH A LITTLE LOVE</span></div>
+  </div>
+  <footer><span>BOGLE BOGLE · LITTLE COOKING CLUB</span><span>오늘도 잘 먹겠습니다! ♡</span></footer>
+</main>
+</div>
+<script src="motion-system.js?v=5"></script>
+<script src="cutting-scene.js?v=9"></script>
+<script src="fried-rice-scene.js?v=11"></script>
+<script src="pot-scene.js?v=2"></script>
+<script src="video-cooking-scene.js?v=28"></script>
+<script src="recipe-data.js?v=2"></script>
+<script src="interaction-system.js?v=18"></script>
+<script src="cooking-system.js?v=39"></script>
+<script src="game.js?v=58"></script>
+<script src="recipe-carousel.js?v=2"></script>
+</body>
+</html>
